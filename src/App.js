@@ -8,6 +8,7 @@ function App() {
   const [highScore, setHighScore] = useState(
     parseInt(localStorage.getItem('highScore')) || 0
   );
+  const [currentLevel, setCurrentLevel] = useState(1);
   
   const llamaRef = useRef(null);
   const cactusRef = useRef(null);
@@ -41,6 +42,7 @@ function App() {
     setGameOver(false);
     setScore(0);
     setIsJumping(false);
+    setCurrentLevel(1);
   };
 
   useEffect(() => {
@@ -51,7 +53,14 @@ function App() {
   useEffect(() => {
     if (!gameOver) {
       const scoreInterval = setInterval(() => {
-        setScore(prevScore => prevScore + 1);
+        setScore(prevScore => {
+          const newScore = prevScore + 1;
+          // Update level based on score
+          if (newScore % 50 === 0) {
+            setCurrentLevel(prevLevel => (prevLevel % 3) + 1);
+          }
+          return newScore;
+        });
       }, 100);
 
       const collisionInterval = setInterval(checkCollision, 10);
@@ -75,10 +84,11 @@ function App() {
   };
 
   return (
-    <div className="game-container">
+    <div className={`game-container level-${currentLevel}`}>
       <div className="score-container">
         <div>Score: {score}</div>
         <div>High Score: {highScore}</div>
+        <div>Level: {currentLevel}</div>
       </div>
       
       {gameOver && (
