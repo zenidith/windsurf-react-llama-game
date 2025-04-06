@@ -85,6 +85,10 @@ function App() {
 
   return (
     <div className={`game-container level-${currentLevel}`}>
+      <div className="background-layer background-day" />
+      <div className="background-layer background-sunset" />
+      <div className="background-layer background-night" />
+      
       <div className="score-container">
         <div>Score: {score}</div>
         <div>High Score: {highScore}</div>

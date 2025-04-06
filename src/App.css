@@ -42,22 +42,34 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
-  transition: background-color 1s ease;
+}
+
+.background-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 3s ease-in-out;
 }
 
 /* Level 1 - Day time */
-.level-1 {
+.level-1 .background-day {
   background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+  opacity: 1;
 }
 
 /* Level 2 - Sunset */
-.level-2 {
+.level-2 .background-sunset {
   background: linear-gradient(to bottom, #FF7F50, #FFB6C1);
+  opacity: 1;
 }
 
 /* Level 3 - Night time */
-.level-3 {
+.level-3 .background-night {
   background: linear-gradient(to bottom, #191970, #483D8B);
+  opacity: 1;
 }
 
 .game-area {
@@ -65,6 +77,7 @@
   height: 200px;
   position: absolute;
   bottom: 50px;
+  z-index: 1;
 }
 
 .llama {
@@ -209,6 +222,8 @@
   height: 50px;
   position: absolute;
   bottom: 0;
+  z-index: 1;
+  transition: background 3s ease-in-out;
 }
 
 /* Ground colors for different levels */
@@ -231,6 +246,8 @@
   font-size: 24px;
   font-family: 'Press Start 2P', monospace;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  transition: color 3s ease-in-out;
 }
 
 /* Text colors for different levels */
@@ -257,6 +274,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 
 .instructions {
@@ -267,6 +285,8 @@
   font-family: 'Press Start 2P', monospace;
   font-size: 14px;
   opacity: 0.7;
+  z-index: 2;
+  transition: color 3s ease-in-out;
 }
 
 /* Instructions text color for different levels */
